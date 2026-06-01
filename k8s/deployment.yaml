@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codearts-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codearts-webapp
+  template:
+    metadata:
+      labels:
+        app: codearts-webapp
+    spec:
+      containers:
+        - name: codearts-webapp
+          image: jsys4d/codearts-webapp:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URI
+              value: "mongodb://codearts_admin:Str0ngP4ss!@mongodb-service:27017/codearts?authSource=admin"
